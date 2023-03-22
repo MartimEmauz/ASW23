@@ -20,7 +20,7 @@
         }else {
             header('Location: error.php');
         }
-        header('Location: login.html');
+        header('Location: login.php');
         disconnect($conn);
     }else {
         header('Location: error.php');

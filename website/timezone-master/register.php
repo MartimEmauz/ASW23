@@ -51,7 +51,7 @@
                             <div class="login_part_form_iner">
                                 <h3>Crie a sua conta<br>
 
-                                <form class="row contact_form" action="register.php" method="post" novalidate="novalidate">
+                                <form class="row contact_form" action="register1.php" method="post" novalidate="novalidate">
                                     <div class="col-md-12 form-group p_star">
                                         <input type="text" class="form-control" id="nome" name="nome" value=""
                                             placeholder="Nome de utilizador">

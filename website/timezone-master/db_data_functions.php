@@ -96,4 +96,39 @@
         $r = mysqli_query($conn, $q);
         disconnect($conn);
     }
+
+    function search_field($column, $value) {
+        $conn = connect();
+        $q = "SELECT * FROM utilizador WHERE $column = '$value'";        
+        $r = mysqli_query($conn, $q);
+        disconnect($conn);
+        return $r;
+    }
+
+    function search_fields($fields, $values) {
+        $conn = connect();
+        $q = "SELECT * FROM utilizador WHERE ";
+        for($i = 0; $i < count($fields); $i++) {
+            $q .= $fields[$i] . " = '" . $values[$i] . "'";
+            if($i < count($fields) - 1) {
+                $q .= " AND ";
+            }
+        }
+        $r = mysqli_query($conn, $q);
+        disconnect($conn);
+        if (mysqli_num_rows($r) > 0) {
+            while($row = mysqli_fetch_assoc($r)) {
+                echo "nome: " . $row["nome"] . "<br>";
+                echo "email: " . $row["email"] . "<br>";
+                echo "passe: " . $row["passe"] . "<br>";
+                echo "data de nascimento: " . $row["data_nascimento"] . "<br>";
+                echo "genero: " . $row["genero"] . "<br>";
+                echo "localidade: " . $row["localidade"] . "<br>";
+                echo "morada: " . $row["morada"] . "<br>";
+                echo "codigo postal: " . $row["codigo_postal"] . "<br><br><br>";
+            }
+        } else {
+            echo "0 results";
+        }
+    }
 ?>

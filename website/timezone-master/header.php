@@ -37,9 +37,9 @@
                                             <li><a href="product_details.html"> Detalhes </a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#">Preferências</a>
+                                    <li><a href="#">Perfil</a>
                                         <ul class="submenu">
-                                            <li><a href="blog.php">Definir Preferências</a></li>
+                                            <li><a href="blog.php">Editar Perfil</a></li>
                                             <li><a href="user_preferences.php">As minhas preferências</a></li>
                                         </ul>
                                     </li>

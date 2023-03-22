@@ -54,7 +54,7 @@
                                 <h2>New to our Shop?</h2>
                                 <p>There are advances being made in science and technology
                                     everyday, and a good example of this is the</p>
-                                <a href="signup.html" class="btn_3">Create an Account</a>
+                                <a href="register.php" class="btn_3">Create an Account</a>
                             </div>
                         </div>
                     </div>
