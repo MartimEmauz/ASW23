@@ -8,7 +8,7 @@
 
         if(mysqli_num_rows($r)) {
             echo('<br><p> mail already in use! </p><br>');
-            echo('<a href="../View/login.php">Login Instead</a>');
+            echo('<a href="login.html">Login Instead</a>');
             return false;
         }else {
             return true;
@@ -25,7 +25,7 @@
             return true;
         }else {
             echo('<br><p> Wrong email or passord </p><br>');
-            echo('<a href="../View/register.php">Not Registered? Register Here</a>');
+            echo('<a href="register.php">Not Registered? Register Here</a>');
         }
     }
 
@@ -86,6 +86,14 @@
             $q = "DELETE FROM $t_name WHERE id_utilizador = '$id'";
             $r = mysqli_query($conn, $q);
         }
+        disconnect($conn);
+    }
+
+    function update_field($id, $field, $value) {
+        $conn = connect();
+        $t_name = 'utilizador';
+        $q = "UPDATE utilizador SET $field = '$value' WHERE id = '$id'";
+        $r = mysqli_query($conn, $q);
         disconnect($conn);
     }
 ?>

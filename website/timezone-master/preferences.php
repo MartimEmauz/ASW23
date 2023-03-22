@@ -1,14 +1,5 @@
-<?php
-    include("../View/header.php");
-    //if(!isset($_SESSION["user_pref"]) ) {
-
-    //}
-        /////////// tens de por as preferencias
-        /////////// se S_SESSION["user_pref"] existe
-
-?>
-
-<form action="../Model/preferences.php" method="post">
+<h2>Preferências</h2>
+<form action="preferences1.php" method="post">
     <label for="categoria[]">categoria:</label><br>
     <select name="categoria[]" multiple>
         <option value="roupa_interior">roupa interior</option>
@@ -78,5 +69,3 @@
     </select><br><br>
     <input type="submit" value="Confirm"><br><br>
 </form>
-
-<?php include("../View/footer.php")?>

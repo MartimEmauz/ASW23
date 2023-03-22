@@ -23,70 +23,9 @@
         <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <header>
-        <!-- Header Start -->
-        <div class="header-area">
-            <div class="main-header header-sticky">
-                <div class="container-fluid">
-                    <div class="menu-wrapper">
-                        <!-- Logo -->
-                        <div class="logo">
-                            <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
-                        </div>
-                        <!-- Main-menu -->
-                        <div class="main-menu d-none d-lg-block">
-                            <nav>                                                
-                                <ul id="navigation">  
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="shop.html">Anúncios</a></li>
-                                    <li><a href="about.html">Sobre</a></li>
-                                    <li class="hot"><a href="#">Ultimos anúncios</a>
-                                        <ul class="submenu">
-                                            <li><a href="shop.html"> Lista de Produtos</a></li>
-                                            <li><a href="product_details.html"> Detalhes </a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="blog.html">Preferências</a>
-                                        <ul class="submenu">
-                                            <li><a href="blog.html">As minhas preferências</a></li>
-                                            <li><a href="blog-details.html">\\Temp</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Páginas</a>
-                                        <ul class="submenu">
-                                            <li><a href="login.html">Login</a></li>
-                                            <li><a href="cart.html">Carrinho</a></li>
-                                            <li><a href="elements.html">\\Temp</a></li>
-                                            <li><a href="confirmation.html">Confirmação</a></li>
-                                            <li><a href="checkout.html">Checkout</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="contact.html">Contacto</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                        <!-- Header Right -->
-                        <div class="header-right">
-                            <ul>
-                                <li>
-                                    <div class="nav-search search-switch">
-                                        <span class="flaticon-search"></span>
-                                    </div>
-                                </li>
-                                <li> <a href="login.html"><span class="flaticon-user"></span></a></li>
-                                <li><a href="cart.html"><span class="flaticon-shopping-cart"></span></a> </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- Mobile Menu -->
-                    <div class="col-12">
-                        <div class="mobile_menu d-block d-lg-none"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Header End -->
-    </header>
+    <?php
+    include("header.php");
+    ?>
     <main>
         <!-- Hero Area Start-->
         <div class="slider-area ">
@@ -95,7 +34,7 @@
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="hero-cap text-center">
-                                <h2>Login</h2>
+                                <h2>Signup</h2>
                             </div>
                         </div>
                     </div>
@@ -107,39 +46,57 @@
         <section class="login_part section_padding ">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-6 col-md-6">
-                        <div class="login_part_text text-center">
-                            <div class="login_part_text_iner">
-                                <h2>New to our Shop?</h2>
-                                <p>There are advances being made in science and technology
-                                    everyday, and a good example of this is the</p>
-                                <a href="#" class="btn_3">Create an Account</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6">
+                    <div class="col-xl-12">
                         <div class="login_part_form">
                             <div class="login_part_form_iner">
-                                <h3>Welcome Back ! <br>
-                                    Please Sign in now</h3>
-                                <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+                                <h3>Crie a sua conta<br>
+
+                                <form class="row contact_form" action="register.php" method="post" novalidate="novalidate">
                                     <div class="col-md-12 form-group p_star">
-                                        <input type="text" class="form-control" id="name" name="name" value=""
-                                            placeholder="Username">
+                                        <input type="text" class="form-control" id="nome" name="nome" value=""
+                                            placeholder="Nome de utilizador">
                                     </div>
                                     <div class="col-md-12 form-group p_star">
-                                        <input type="password" class="form-control" id="password" name="password" value=""
+                                        <input type="pass" class="form-control" id="pass" name="pass" value=""
                                             placeholder="Password">
                                     </div>
+                                    <div class="col-md-12 form-group p_star">
+                                        <input type="text" class="form-control" id="localidade" name="localidade" value=""
+                                            placeholder="Localidade">
+                                    </div>
+                                    <div class="col-md-12 form-group p_star">
+                                        <input type="text" class="form-control" id="morada" name="morada" value=""
+                                            placeholder="Morada">
+                                    </div>
+                                    <div class="col-md-12 form-group p_star">
+                                        <input type="text" class="form-control" id="localidade" name="localidade" value=""
+                                            placeholder="Localidade">
+                                    </div>
+                                    <div class="col-md-12 form-group p_star">
+                                        <input type="text" class="form-control" id="codigopostal" name="codigo_postal" value=""
+                                            placeholder="Código Postal">
+                                    </div>
+                                    <div class="col-md-12 form-group p_star">
+                                        <label for="genero" class="form-control">Género</label>
+                                            <select name="genero">
+                                                <option value="M">Male</option>
+                                                <option value="F">Female</option>
+                                                <option value="O">Other</option>
+                                            </select>
+                                    </div>
+                                    <div class="col-md-12 form-group p_star">
+                                        <input type="date" class="form-control" id="datanasc" name="data_nascimento" value=""
+                                            placeholder="Data de nascimento">
+                                    </div>
+                                    <div class="col-md-12 form-group p_star">
+                                        <input type="text" class="form-control" id="email" name="email" value=""
+                                            placeholder="Email">
+                                    </div>
                                     <div class="col-md-12 form-group">
-                                        <div class="creat_account d-flex align-items-center">
-                                            <input type="checkbox" id="f-option" name="selector">
-                                            <label for="f-option">Remember me</label>
-                                        </div>
                                         <button type="submit" value="submit" class="btn_3">
-                                            log in
+                                            Signup
                                         </button>
-                                        <a class="lost_pass" href="#">forget password?</a>
+                                        <a class="lost_pass" href="#">forgot pass?</a>
                                     </div>
                                 </form>
                             </div>

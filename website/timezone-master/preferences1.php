@@ -45,5 +45,5 @@
     }
 
     $_SESSION["user_pref"] = $_SESSION["email"];
-    header('Location: ../View/user_preferences.php');
+    header('Location: user_preferences.php');
 ?>
