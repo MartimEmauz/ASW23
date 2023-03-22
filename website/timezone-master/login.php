@@ -2,7 +2,7 @@
     session_start();
     include("db_data_functions.php");
     if(!isset($_POST['email_login'], $_POST['pass_login']) || empty($_POST['email_login']) || empty($_POST['pass_login'])) {
-        exit('Please complete the registation form to procede');
+        exit('Please complete the registation form to proceed');
     }
 
     $email = htmlspecialchars($_POST['email_login']);
