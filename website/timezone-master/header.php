@@ -22,7 +22,7 @@
                     <div class="menu-wrapper">
                         <!-- Logo -->
                         <div class="logo">
-                            <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                            <a href="index.php"><img src="assets/img/logo/logo.png" alt=""></a>
                         </div>
                         <!-- Main-menu -->
                         <div class="main-menu d-none d-lg-block">
@@ -33,7 +33,7 @@
                                     <li><a href="about.php">Sobre</a></li>
                                     <li class="hot"><a href="#">Ultimos anúncios</a>
                                         <ul class="submenu">
-                                            <li><a href="shop.html"> Lista de Produtos</a></li>
+                                            <li><a href="shop.php"> Lista de Produtos</a></li>
                                             <li><a href="product_details.html"> Detalhes </a></li>
                                         </ul>
                                     </li>
@@ -43,7 +43,7 @@
                                             <li><a href="user_preferences.php">As minhas preferências</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#">Páginas</a>
+                                    <li><a href="#">Páginas (tempórario)</a>
                                         <ul class="submenu">
                                             <li><a href="login.php">Login</a></li>
                                             <li><a href="cart.html">Carrinho</a></li>

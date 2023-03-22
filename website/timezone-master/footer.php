@@ -23,7 +23,7 @@
                             <div class="single-footer-caption mb-30">
                                 <!-- logo -->
                                 <div class="footer-logo">
-                                    <a href="index.html"><img src="assets/img/logo/logo2_footer.png" alt=""></a>
+                                    <a href="index.php"><img src="assets/img/logo/logo2_footer.png" alt=""></a>
                                 </div>
                                 <div class="footer-tittle">
                                     <div class="footer-pera">
@@ -38,10 +38,10 @@
                             <div class="footer-tittle">
                                 <h4>Links úteis</h4>
                                 <ul>
-                                    <li><a href="#">Sobre nós</a></li>
+                                    <li><a href="about.php">Sobre nós</a></li>
                                     <li><a href="#">Ofertas e descontos</a></li>
                                     <li><a href="#">Redimir um cupão</a></li>
-                                    <li><a href="#">Contactos</a></li>
+                                    <li><a href="contact.html">Contactos</a></li>
                                 </ul>
                             </div>
                         </div>
