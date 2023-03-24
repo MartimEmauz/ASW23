@@ -91,15 +91,15 @@
 
     function update_field($id, $field, $value) {
         $conn = connect();
-        $t_name = 'utilizador';
-        $q = "UPDATE utilizador SET $field = '$value' WHERE id = '$id'";
+        $t_name = 'Utilizador';
+        $q = "UPDATE Utilizador SET $field = '$value' WHERE id = '$id'";
         $r = mysqli_query($conn, $q);
         disconnect($conn);
     }
 
     function search_field($column, $value) {
         $conn = connect();
-        $q = "SELECT * FROM utilizador WHERE $column = '$value'";        
+        $q = "SELECT * FROM Utilizador WHERE $column = '$value'";        
         $r = mysqli_query($conn, $q);
         disconnect($conn);
         return $r;
@@ -107,7 +107,7 @@
 
     function search_fields($fields, $values) {
         $conn = connect();
-        $q = "SELECT * FROM utilizador WHERE ";
+        $q = "SELECT * FROM Utilizador WHERE ";
         for($i = 0; $i < count($fields); $i++) {
             $q .= $fields[$i] . " = '" . $values[$i] . "'";
             if($i < count($fields) - 1) {
