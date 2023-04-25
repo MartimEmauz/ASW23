@@ -19,10 +19,10 @@ CREATE TABLE Utilizador (
 
 CREATE TABLE Peca (
   id INT(10) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  id_utilizador INT(10) NOT NULL REFERENCES Utilizador(id),
+  id_utilizador INT(10),
   titulo VARCHAR(255) NOT NULL,
   preco DECIMAL(10, 2) NOT NULL,
-  imagem longblob NOT NULL,
+  imagem VARCHAR(255) NOT NULL,
   data_registo DATE NOT NULL,
   descricao TEXT NOT NULL,
   estado CHAR(50) NOT NULL,
@@ -30,7 +30,8 @@ CREATE TABLE Peca (
   marca CHAR(50) NOT NULL,
   tipo CHAR(50) NOT NULL,
   tamanho CHAR(2) NOT NULL,
-  categoria CHAR(50) NOT NULL
+  categoria CHAR(50) NOT NULL,
+  FOREIGN KEY (id_utilizador) REFERENCES Utilizador(id) ON DELETE CASCADE
 );
 
 CREATE TABLE Mensagem (
@@ -78,7 +79,6 @@ CREATE TABLE Preferencia_Tipo (
   FOREIGN KEY (id_utilizador) REFERENCES Utilizador(id) ON DELETE CASCADE
 );
 
-
 CREATE TABLE Preferencia_Tamanho (
   id INT(10) PRIMARY KEY AUTO_INCREMENT,
   id_utilizador INT(10),
@@ -91,4 +91,12 @@ CREATE TABLE Preferencia_Categoria (
   id_utilizador INT(10),
   categoria VARCHAR(50),
   FOREIGN KEY (id_utilizador) REFERENCES Utilizador(id) ON DELETE CASCADE
+);
+
+CREATE TABLE utilizador_favoritos (
+  id INT(10) PRIMARY KEY AUTO_INCREMENT,
+  id_utilizador INT(10) NOT NULL,
+  id_peca INT(10) NOT NULL,
+  FOREIGN KEY (id_utilizador)  REFERENCES Utilizador(id) ON DELETE CASCADE,
+  FOREIGN KEY (id_peca)  REFERENCES Peca(id) ON DELETE CASCADE
 );
