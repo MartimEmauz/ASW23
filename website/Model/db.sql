@@ -1,9 +1,3 @@
-DROP TABLE IF EXISTS Preferencia_Categoria;
-DROP TABLE IF EXISTS Preferencia_Tamanho;
-DROP TABLE IF EXISTS Preferencia_Tipo;
-DROP TABLE IF EXISTS Preferencia_Marca;
-DROP TABLE IF EXISTS Preferencia_Cor;
-DROP TABLE IF EXISTS Preferencia_Estado;
 DROP TABLE IF EXISTS Transacao;
 DROP TABLE IF EXISTS Mensagem;
 DROP TABLE IF EXISTS Peca;
@@ -22,19 +16,21 @@ CREATE TABLE Utilizador (
   email VARCHAR(255) UNIQUE NOT NULL
 );
 
+
 CREATE TABLE Peca (
-  id INT(10) PRIMARY KEY AUTO_INCREMENT,
-  titulo VARCHAR(255),
-  preco DECIMAL(10, 2),
-  imagem VARCHAR(255),
-  data_registo DATE,
-  descricao TEXT,
-  estado CHAR(50),
-  cor CHAR(50),
-  marca CHAR(50),
-  tipo CHAR(50),
-  tamanho CHAR(2),
-  categoria CHAR(50)
+  id INT(10) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  id_utilizador INT(10) NOT NULL REFERENCES Utilizador(id),
+  titulo VARCHAR(255) NOT NULL,
+  preco DECIMAL(10, 2) NOT NULL,
+  imagem longblob NOT NULL,
+  data_registo DATE NOT NULL,
+  descricao TEXT NOT NULL,
+  estado CHAR(50) NOT NULL,
+  cor CHAR(50) NOT NULL,
+  marca CHAR(50) NOT NULL,
+  tipo CHAR(50) NOT NULL,
+  tamanho CHAR(2) NOT NULL,
+  categoria CHAR(50) NOT NULL
 );
 
 CREATE TABLE Mensagem (

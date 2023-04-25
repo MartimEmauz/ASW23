@@ -2,7 +2,7 @@
     session_start();
     include("db_data_functions.php");
 
-    $user_id = get_user_id($_SESSION['email']);
+    $user_id = get_user_info($_SESSION['email'], "id");
 
     if(isset($_SESSION["user_pref"]) && $_SESSION["user_pref"] == $_SESSION["email"]) {
         delete_user_preferences($user_id, ['categoria', 'cor', 'estado', 'marca', 'tamanho', 'tipo']);
@@ -45,5 +45,5 @@
     }
 
     $_SESSION["user_pref"] = $_SESSION["email"];
-    header('Location: user_preferences.php');
+    header('Location: ../user_preferences.php');
 ?>

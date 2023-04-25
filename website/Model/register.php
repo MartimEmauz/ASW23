@@ -1,7 +1,7 @@
 <?php
     include("db_data_functions.php");
     if(!isset($_POST['email'], $_POST['nome'], $_POST['pass']) || empty($_POST['email']) || empty($_POST['nome']) || empty($_POST['pass'])) {
-        exit('Please complete the registation form to proceed');
+        exit('Please complete the registation form to procede');
     }
     $email = $_POST['email'];
     if(check_data_register($email)) {
@@ -18,11 +18,11 @@
             $data_nascimento = htmlspecialchars(date('Y-m-d', strtotime($_POST['data_nascimento'])));
             mysqli_stmt_execute($stmt);
         }else {
-            header('Location: error.php');
+            header('Location: ../error.php');
         }
-        header('Location: login.php');
+        header('Location: ../login.php');
         disconnect($conn);
     }else {
-        header('Location: error.php');
+        header('Location: ../error.php');
     }
 ?>

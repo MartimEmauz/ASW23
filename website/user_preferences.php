@@ -1,29 +1,29 @@
 <?php
     session_start();
-    require_once("header.php");
-    require_once("db_data_functions.php");
-    require_once("user_preferences.php");
-
-    $user_id = get_user_id($_SESSION["email"]);
-    echo('<a href="preferences.php">Editar Preferencias</a><br><br>');
-
-?>
-<div style="text-align: center;">
-    <?php
-    $user_pref = get_user_preferences($user_id, ['categoria', 'cor', 'estado', 'marca', 'tamanho', 'tipo']);
-    foreach($user_pref as $key=>$value) {
-        echo($key);
-        echo(' --> ');
-        foreach($value as $v) {
-            echo($v);
-            echo(' | ');
+    include("Model/db_data_functions.php");
+    include("Model/user_preferences.php");
+    include("View/header.php");
+    include("View/top_menu.php");
+    
+    if(!isset($_SESSION["email"])) {
+        $inf_text = '<p>Para aceder a esta pagina por favor faça login</p>';
+        include("View/login_required.php");
+    }else {
+        $user_id = get_user_info($_SESSION["email"], "id");
+        $counter = 0;
+        $user_prefs = get_user_preferences($user_id, ['categoria', 'cor', 'estado', 'marca', 'tamanho', 'tipo']);
+        foreach($user_prefs as $key=>$value) {
+            if($value) {
+                $counter+=1;
+            }
         }
-        echo('<br>');
+        if($counter > 0) {
+            include('View/user_preferences.php');
+        }else {
+            $inf_text = '<p>Sem preferencias, vá a editar preferencias primeiro</p>';
+            include("View/login_required.php");
+        }
     }
-    ?>
-</div>
-<br>
-<a href="index.php">home</a>
 
-
-<?php include("footer.php")?>
+    include("View/footer.php");
+?>

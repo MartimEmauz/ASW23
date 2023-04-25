@@ -8,7 +8,7 @@
 
         if(mysqli_num_rows($r)) {
             echo('<br><p> mail already in use! </p><br>');
-            echo('<a href="login.html">Login Instead</a>');
+            echo('<a href="../View/login.php">Login Instead</a>');
             return false;
         }else {
             return true;
@@ -24,18 +24,19 @@
         if(mysqli_num_rows($r)) {
             return true;
         }else {
-            echo('<br><p> Wrong email or passord </p><br>');
-            echo('<a href="register.php">Not Registered? Register Here</a>');
+            return false;
         }
     }
 
-    function get_user_id($email) {
+    function get_user_info($email, $info) {
         $conn = connect();
-        $q = "SELECT id FROM Utilizador WHERE email = '$email'";
+        $q = "SELECT $info FROM Utilizador WHERE email = '$email'";
         $r = mysqli_query($conn, $q);
         disconnect($conn);
-        if ($row = $r->fetch_assoc());
-        return $row["id"];
+        if ($row = $r->fetch_assoc()) {
+            return $row[$info];
+        }
+        
 
     }
 
@@ -89,6 +90,7 @@
         disconnect($conn);
     }
 
+
     function update_field($id, $field, $value) {
         $conn = connect();
         $t_name = 'Utilizador';
@@ -96,6 +98,7 @@
         $r = mysqli_query($conn, $q);
         disconnect($conn);
     }
+
 
     function search_field($column, $value) {
         $conn = connect();
@@ -131,4 +134,34 @@
             echo "0 results";
         }
     }
+
+    
+
+    function insert_piece($u_id, $titulo, $preco, $imagem, $data, $descricao, $estado, $cor, $marca, $tipo, $tamanho, $categoria) {
+        $conn = connect();
+        $q = "INSERT INTO peca (id_utilizador, titulo, preco, imagem, data_registo, descricao, estado, cor, marca, tipo, tamanho, categoria) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        if($stmt = mysqli_prepare($conn, $q)) {
+            mysqli_stmt_bind_param($stmt, "isdbssssssss", $u_id, $titulo, $preco, $imagem, $data, $descricao, $estado, $cor, $marca, $tipo, $tamanho, $categoria);
+            mysqli_stmt_execute($stmt);
+        }else {
+            disconnect($conn);
+            header('Location: ../View/error.php');
+        }
+        disconnect($conn);
+    }
+
+    function get_user_products($user_id) {
+        $conn = connect();
+        $q = "SELECT * FROM Peca WHERE id_utilizador = '$user_id'";
+        $r = mysqli_query($conn, $q);
+        $result = [];
+        if (mysqli_num_rows($r) > 0) {
+            while($row = mysqli_fetch_assoc($r)) {
+                array_push($result, $row);
+            }
+        }
+        disconnect($conn);
+        return $result;
+    }
+    
 ?>

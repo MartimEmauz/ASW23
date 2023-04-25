@@ -2,7 +2,7 @@
     session_start();
     include("db_data_functions.php");
 
-    $user_id = get_user_id($_SESSION['email']);
+    $user_id = get_user_info($_SESSION['email'], "id");
 
     if(isset($_POST["novo_nome"]) && !empty($_POST["novo_nome"])) {
         update_field($user_id, 'nome', $_POST["novo_nome"]);
@@ -28,5 +28,5 @@
         update_field($user_id, 'data_nascimento', $_POST["nova_data_nascimento"]);
     }
 
-    header('Location: blog.php');
+    header('Location: ../index.php');
 ?>
