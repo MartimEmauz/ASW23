@@ -37,13 +37,11 @@
                                         <li><a href="user_preferences.php">As minhas preferências</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="#">Páginas (tempórario)</a>
+                                <li><a href="#">Loja</a>
                                     <ul class="submenu">
-                                        <li><a href="login.php">Login</a></li>
-                                        <li><a href="cart.html">Carrinho</a></li>
-                                        <li><a href="elements.html">\\Temp</a></li>
-                                        <li><a href="confirmation.html">Confirmação</a></li>
-                                        <li><a href="checkout.html">Checkout</a></li>
+                                        <li><a href="pesquisar.php">Pesquisar</a></li>
+                                        <li><a href="cart.php">Carrinho</a></li>
+                                        <li><a href="favoritos.php">Favoritos</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="contact.html">Contacto</a></li>

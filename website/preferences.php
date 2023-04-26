@@ -10,6 +10,7 @@
     } 
     else {
         $inf_text = '<p>Para aceder a esta pagina por favor faça login</p>';
+        $inf_title = '<h2>Perfil</h2>';
         include("View/login_required.php");
     }
     include("View/footer.php");

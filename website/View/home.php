@@ -70,10 +70,6 @@
         echo('<div class="row">');
 
 
-
-
-
-
         foreach($result as $r) {
             echo('<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">');
             echo('<div class="single-new-pro mb-30 text-center">');

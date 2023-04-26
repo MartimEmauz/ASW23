@@ -11,7 +11,7 @@
                                     placeholder="Titulo">
                             </div>
                             <div class="col-md-12 form-group p_star">
-                                <input type="number" min="0" step="0.01" class="form-control" id="preco_ap" name="preco_ap" value=""
+                                <input type="number" min="0" step="1" class="form-control" id="preco_ap" name="preco_ap" value=""
                                     placeholder="Preço">
                             </div>
                             <div class="col-md-12 form-group p_star">

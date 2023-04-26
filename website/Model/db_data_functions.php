@@ -38,6 +38,17 @@
         }
     }
 
+    function get_user_info_with_name($name, $info) {
+        $conn = connect();
+        $q = "SELECT $info FROM Utilizador WHERE nome = '$name'";
+        $r = mysqli_query($conn, $q);
+        disconnect($conn);
+        if ($row = $r->fetch_assoc()) {
+            return $row[$info];
+        }
+    }
+    
+
     function insert_preferences($pref, $user_p, $user_id) {
         $table = 'Preferencia_' . $pref;
         $conn = connect();
@@ -193,4 +204,188 @@
         disconnect($conn);
         return $result;
     }
+
+
+
+    function get_search_products($args, $u_loged) {
+        $conn = connect();
+        $no_price_args = $args;
+        $q = "SELECT * FROM peca WHERE id_utilizador != '$u_loged'";
+        if(!empty($args)) {
+            $q .= " AND ";
+        }
+        if(array_key_exists('preco_min', $args)) {
+            $min = $args['preco_min'];
+            $q .= "preco >= '$min'" ;
+            unset($no_price_args['preco_min']);
+            if(count($no_price_args)>0){
+                $q .=" AND ";
+            }
+        }
+        if(array_key_exists('preco_max', $args)) {
+            $max = $args['preco_max'];
+            $q .= "preco <= '$max'";
+            unset($no_price_args['preco_max']);
+            if(count($no_price_args)>0){
+                $q .=" AND ";
+            }
+        }
+        $updated_args = $no_price_args;
+        foreach($no_price_args as $k=>$v) {
+            $q .= "$k = '$v'";
+            unset($updated_args[$k]);
+            if(!empty($updated_args)) {
+                $q .= " AND ";
+            }
+        }
+        $r = mysqli_query($conn, $q);
+        $result = [];
+        if (mysqli_num_rows($r) > 0) {
+            while($row = mysqli_fetch_assoc($r)) {
+                array_push($result, $row);
+            }
+        }
+        disconnect($conn);
+        return $result;
+    }
+
+
+    function in_fav($id_peca, $id_u) {
+        $conn = connect();
+        $q = "SELECT * FROM utilizador_favoritos WHERE id_utilizador = '$id_u' AND id_peca = '$id_peca'";
+        $r = mysqli_query($conn, $q);
+        if(mysqli_num_rows($r)) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    function add_fav($id_peca, $id_u) {
+        $conn = connect();
+        $q = "INSERT INTO utilizador_favoritos (id_utilizador, id_peca) VALUES (?, ?)";
+        if($stmt = mysqli_prepare($conn, $q)) {
+            mysqli_stmt_bind_param($stmt, "ii", $id_u, $id_peca);
+            mysqli_stmt_execute($stmt);
+        }else {
+            disconnect($conn);
+            header('Location: ../View/error.php');
+        }
+        disconnect($conn);
+    }
+
+    function get_fav($u_id) {
+        $conn = connect();
+        $q = "SELECT * FROM utilizador_favoritos WHERE id_utilizador = '$u_id'";
+        $r = mysqli_query($conn, $q);
+        $result = [];
+        if (mysqli_num_rows($r) > 0) {
+            while($row = mysqli_fetch_assoc($r)) {
+                array_push($result, $row);
+            }
+        }
+        disconnect($conn);
+        return $result;
+    }
+
+    function del_fav($id_peca, $u_id) {
+        $conn = connect();
+        $q = "DELETE FROM utilizador_favoritos WHERE id_peca = '$id_peca' AND id_utilizador = '$u_id'";
+        $r = mysqli_query($conn, $q);
+        disconnect($conn);
+    }
+
+
+    function get_peca($id) {
+        $conn = connect();
+        $q = "SELECT * FROM Peca WHERE id = '$id'";
+        $r = mysqli_query($conn, $q);
+        $result = [];
+        if (mysqli_num_rows($r) > 0) {
+            while($row = mysqli_fetch_assoc($r)) {
+                array_push($result, $row);
+            }
+        }
+        disconnect($conn);
+        return $result;
+    }
+
+
+
+    function in_cart($id_peca, $id_u) {
+        $conn = connect();
+        $q = "SELECT * FROM utilizador_carrinho WHERE id_utilizador = '$id_u' AND id_peca = '$id_peca'";
+        $r = mysqli_query($conn, $q);
+        if(mysqli_num_rows($r)) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+
+    function add_cart($id_peca, $id_u) {
+        $conn = connect();
+        $q = "INSERT INTO utilizador_carrinho (id_utilizador, id_peca) VALUES (?, ?)";
+        if($stmt = mysqli_prepare($conn, $q)) {
+            mysqli_stmt_bind_param($stmt, "ii", $id_u, $id_peca);
+            mysqli_stmt_execute($stmt);
+        }else {
+            disconnect($conn);
+            header('Location: ../View/error.php');
+        }
+        disconnect($conn);
+    }
+
+
+
+    ////
+    function get_cart($u_id) {
+        $conn = connect();
+        $q = "SELECT * FROM utilizador_carrinho WHERE id_utilizador = '$u_id'";
+        $r = mysqli_query($conn, $q);
+        $result = [];
+        if (mysqli_num_rows($r) > 0) {
+            while($row = mysqli_fetch_assoc($r)) {
+                array_push($result, $row);
+            }
+        }
+        disconnect($conn);
+        return $result;
+    }
+
+    function del_cart($id_peca, $u_id) {
+        $conn = connect();
+        $q = "DELETE FROM utilizador_carrinho WHERE id_peca = '$id_peca' AND id_utilizador = '$u_id'";
+        $r = mysqli_query($conn, $q);
+        disconnect($conn);
+    }
+
+    function move_to_transaction($id_peca, $id_comprador, $id_vendedor) {
+        $conn = connect();
+        $q = "INSERT INTO Transacao (id_peca, id_comprador, id_vendedor) VALUES (?, ?, ?)";
+        if($stmt = mysqli_prepare($conn, $q)) {
+            mysqli_stmt_bind_param($stmt, "iii", $id_peca, $id_comprador, $id_vendedor);
+            mysqli_stmt_execute($stmt);
+        }else {
+            disconnect($conn);
+            header('Location: ../View/error.php');
+        }
+        disconnect($conn);
+    }
+
+
+    function delete_peca($id) {
+        $conn = connect();
+        $q = "DELETE FROM Peca WHERE id = '$id'";
+        $r = mysqli_query($conn, $q);
+        disconnect($conn);
+    }
+
+    //function del_full_cart($u_id) {
+    //    $conn = connect();
+    //    $q = "DELETE FROM utilizador_carrinho WHERE id_utilizador = '$u_id'";
+    //    $r = mysqli_query($conn, $q);
+    //    disconnect($conn);
+    //}
 ?>

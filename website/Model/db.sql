@@ -47,8 +47,7 @@ CREATE TABLE Transacao (
   id INT PRIMARY KEY,
   id_peca INT REFERENCES Peca(id),
   id_comprador INT REFERENCES Utilizador(id),
-  id_vendedor INT REFERENCES Utilizador(id),
-  marca TEXT
+  id_vendedor INT REFERENCES Utilizador(id)
 );
 
 CREATE TABLE Preferencia_Estado (
@@ -96,6 +95,15 @@ CREATE TABLE Preferencia_Categoria (
 );
 
 CREATE TABLE utilizador_favoritos (
+  id INT(10) PRIMARY KEY AUTO_INCREMENT,
+  id_utilizador INT(10) NOT NULL,
+  id_peca INT(10) NOT NULL,
+  FOREIGN KEY (id_utilizador)  REFERENCES Utilizador(id) ON DELETE CASCADE,
+  FOREIGN KEY (id_peca)  REFERENCES Peca(id) ON DELETE CASCADE
+);
+
+
+CREATE TABLE utilizador_carrinho (
   id INT(10) PRIMARY KEY AUTO_INCREMENT,
   id_utilizador INT(10) NOT NULL,
   id_peca INT(10) NOT NULL,

@@ -6,6 +6,7 @@
     include("View/top_menu.php");
     
     if(!isset($_SESSION["email"])) {
+        $inf_title = '<h2>Preferências</h2>';
         $inf_text = '<p>Para aceder a esta pagina por favor faça login</p>';
         include("View/login_required.php");
     }else {
@@ -20,6 +21,7 @@
         if($counter > 0) {
             include('View/user_preferences.php');
         }else {
+            $inf_title = '<h2>Preferências</h2>';
             $inf_text = '<p>Sem preferencias, vá a editar preferencias primeiro</p>';
             include("View/login_required.php");
         }

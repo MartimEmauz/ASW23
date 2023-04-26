@@ -1,8 +1,9 @@
 <?php
     session_start();
     include("Model/db_data_functions.php");
+    include("Model/pesquisar.php");
     include("View/header.php");
     include("View/top_menu.php");
-    include("View/delete_product.php");
-    include("View/footer.php");
+    include("View/pesquisar.php");
+    include("View/resultados_pesquisa.php");
 ?>
