@@ -56,51 +56,6 @@
 
 
 
-<?php
-    if(!empty($same_size)) {
-        echo('<section class="new-product-area section-padding30">');
-        echo('<div class="container">');
-        echo('<div class="row">');
-        echo('<div class="col-xl-12">');
-        echo('<div class="section-tittle mb-70">');
-        echo('<h2>Artigos recomendados</h2>');
-        echo('</div>');
-        echo('</div>');
-        echo('</div>');
-        echo('<div class="row">');
-
-
-
-
-
-
-        foreach($result as $r) {
-            echo('<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">');
-            echo('<div class="single-new-pro mb-30 text-center">');
-            echo('<div class="product-img">');
-            echo('<img src="assets/img/gallery/' . $r["imagem"] . '" alt="">');
-            echo('</div>');
-            echo('<div class="product-caption">');
-            echo('<h3><a href="">' . $r["descricao"] . ' | ' . $r["marca"] . '</a></h3>');
-            echo('<span>' . $r["preco"] . '€ </span>');
-            echo('</div>');
-            echo('</div>');
-            echo('</div>');
-        }
-    
-        echo('</div>');
-        echo('</div>');
-        echo('</section>');
-    }
-
-?>
-
-        
-    
-
-
-
-
 
 <!---------------------------------------------------------------------------------------------------------------------------->
 

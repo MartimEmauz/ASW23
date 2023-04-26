@@ -36,8 +36,6 @@
         if ($row = $r->fetch_assoc()) {
             return $row[$info];
         }
-        
-
     }
 
     function insert_preferences($pref, $user_p, $user_id) {
@@ -57,8 +55,9 @@
     }
 
 
-    function get_user_preferences($id, $table) {
+    function get_user_preferences($id) {
         $conn = connect();
+        $table = ['categoria', 'cor', 'estado', 'marca', 'tamanho', 'tipo'];
         $result = [
             "categoria" => [],
             "cor" => [],
@@ -80,7 +79,8 @@
         return $result;
     }
 
-    function delete_user_preferences($id, $table) {
+    function delete_user_preferences($id) {
+        $table = ['categoria', 'cor', 'estado', 'marca', 'tamanho', 'tipo'];
         $conn = connect();
         foreach($table as $t) {
             $t_name = 'Preferencia_' . $t;
@@ -137,11 +137,11 @@
 
     
 
-    function insert_piece($u_id, $titulo, $preco, $imagem, $data, $descricao, $estado, $cor, $marca, $tipo, $tamanho, $categoria) {
+    function insert_piece($u_id, $titulo, $preco, $imagem, $data, $descricao, $genero, $estado, $cor, $marca, $tipo, $tamanho, $categoria) {
         $conn = connect();
-        $q = "INSERT INTO peca (id_utilizador, titulo, preco, imagem, data_registo, descricao, estado, cor, marca, tipo, tamanho, categoria) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $q = "INSERT INTO peca (id_utilizador, titulo, preco, imagem, data_registo, descricao, genero, estado, cor, marca, tipo, tamanho, categoria) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         if($stmt = mysqli_prepare($conn, $q)) {
-            mysqli_stmt_bind_param($stmt, "isdbssssssss", $u_id, $titulo, $preco, $imagem, $data, $descricao, $estado, $cor, $marca, $tipo, $tamanho, $categoria);
+            mysqli_stmt_bind_param($stmt, "isdssssssssss", $u_id, $titulo, $preco, $imagem, $data, $descricao, $genero, $estado, $cor, $marca, $tipo, $tamanho, $categoria);
             mysqli_stmt_execute($stmt);
         }else {
             disconnect($conn);
@@ -152,7 +152,7 @@
 
     function get_user_products($user_id) {
         $conn = connect();
-        $q = "SELECT * FROM Peca WHERE id_utilizador = '$user_id'";
+        $q = "SELECT * FROM peca WHERE id_utilizador = '$user_id'";
         $r = mysqli_query($conn, $q);
         $result = [];
         if (mysqli_num_rows($r) > 0) {
@@ -163,5 +163,34 @@
         disconnect($conn);
         return $result;
     }
+
+
+    function delete_product($id) {
+        $conn = connect();
+        $q = "DELETE FROM peca WHERE id = '$id'";
+        $r = mysqli_query($conn, $q);
+        disconnect($conn);
+    }
     
+
+    function get_same_size_gender($sizes, $u_id, $genero) {
+        $conn = connect();
+        $q = "SELECT * FROM peca WHERE (id_utilizador != '$u_id') AND (genero = '$genero' OR genero = 'O') AND (";
+        foreach($sizes as $k=>$v) {
+            $q .= "tamanho = '$v'";
+            if(count($sizes)>$k+1) {
+                $q .= " OR ";
+            }
+        }
+        $q .=")";
+        $r = mysqli_query($conn, $q);
+        $result = [];
+        if (mysqli_num_rows($r) > 0) {
+            while($row = mysqli_fetch_assoc($r)) {
+                array_push($result, $row);
+            }
+        }
+        disconnect($conn);
+        return $result;
+    }
 ?>

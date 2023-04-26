@@ -11,7 +11,7 @@
     }else {
         $user_id = get_user_info($_SESSION["email"], "id");
         $counter = 0;
-        $user_prefs = get_user_preferences($user_id, ['categoria', 'cor', 'estado', 'marca', 'tamanho', 'tipo']);
+        $user_prefs = get_user_preferences($user_id);
         foreach($user_prefs as $key=>$value) {
             if($value) {
                 $counter+=1;

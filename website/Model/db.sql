@@ -25,6 +25,7 @@ CREATE TABLE Peca (
   imagem VARCHAR(255) NOT NULL,
   data_registo DATE NOT NULL,
   descricao TEXT NOT NULL,
+  genero CHAR(1) NOT NULL,
   estado CHAR(50) NOT NULL,
   cor CHAR(50) NOT NULL,
   marca CHAR(50) NOT NULL,
@@ -78,6 +79,7 @@ CREATE TABLE Preferencia_Tipo (
   tipo VARCHAR(50),
   FOREIGN KEY (id_utilizador) REFERENCES Utilizador(id) ON DELETE CASCADE
 );
+
 
 CREATE TABLE Preferencia_Tamanho (
   id INT(10) PRIMARY KEY AUTO_INCREMENT,

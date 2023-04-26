@@ -1,9 +1,7 @@
-<?php             /////////////////////////////////////acabar esta funcao depois de contruir os user_products
+<?php
+    require_once('db_data_functions.php');
     session_start();
-    if(isset($_POST["delete_product"])) {
-        if($_POST["delete_product"] == 'Yes') {
-            delete_product(get_user_info($email, $info));
-        }
-    }
+    delete_product($_REQUEST['delete_p']);
+
     header('Location: ../user_products.php');
 ?>

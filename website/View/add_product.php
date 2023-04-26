@@ -23,6 +23,14 @@
                                     placeholder="Descricao">
                             </div>
                             <div class="col-md-12 form-group p_star">
+                                <label for="genero_ap" class="form-control">Genero</label>
+                                    <select name="genero_ap">
+                                        <option value="M">Masculino</option>
+                                        <option value="F">Feminino</option>
+                                        <option value="O">Neutro</option>
+                                    </select>
+                            </div>
+                            <div class="col-md-12 form-group p_star">
                                 <label for="estado_ap" class="form-control">Estado</label>
                                     <select name="estado_ap">
                                         <option value="velho">velho</option>
