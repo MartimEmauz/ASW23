@@ -4,7 +4,7 @@
             <div class="col-xl-12">
                 <div class="login_part_form">
                     <div class="login_part_form_iner">
-                        <form action="model/logout.php" method="post">
+                        <form action="Model/logout.php" method="post">
                             <label>Do you wish to logout?</label><br>
                             <input type="submit" name= "confirm" value="Yes">
                             <input type="submit" name= "confirm" value="No">

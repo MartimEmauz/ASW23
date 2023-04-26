@@ -3,7 +3,7 @@
     include("Model/db_data_functions.php");
     include("View/header.php");
     include("View/top_menu.php");
-    if(isset($_SESSION['email']) && !empty($_SESSION['email'])) {
+    if(isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
         $user_id = get_user_info($_SESSION["email"], "id");
         $counter = 0;
         $user_prefs = get_user_preferences($user_id);
@@ -24,4 +24,5 @@
     }
     
     include("View/footer.php");
+    
 ?>
